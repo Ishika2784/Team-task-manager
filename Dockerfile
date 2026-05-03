@@ -1,5 +1,6 @@
 # Stage 1: Build frontend
 FROM node:20-alpine AS frontend-build
+ARG CACHEBUST=1
 WORKDIR /build
 COPY frontend/package*.json ./
 RUN npm install
