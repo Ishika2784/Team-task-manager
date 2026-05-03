@@ -84,31 +84,66 @@ npm run dev
 
 ---
 
-## 🛠️ Why I Built It This Way (Architecture Decisions)
+## 🚀 Installation
 
-- **Optimistic UI:** I chose to implement Optimistic Updates because perceived performance is crucial. It drastically reduces interaction latency for the user, making the app feel "instant".
-- **Standardized Responses:** I've worked on enough teams to know that inconsistent APIs cause immense friction. Wrapping every response in `{ success, data, message }` guarantees the frontend knows exactly how to handle success and error states.
-- **Rate Limiting:** Added specifically to the `/api/auth/login` route. Without this, the app would be vulnerable to simple credential stuffing attacks. It shows I think about security from day one.
-- **Audit Logs:** Rather than just storing "Task Updated", capturing the exact state changes (`oldValue` -> `newValue`) provides transparency and accountability, which is a hard requirement for any B2B SaaS.
+### Prerequisites:
+- Node.js (v22.x or higher)
+- MongoDB
 
----
+### Steps:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Ishika2784/Team-task-manager.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Team-task-manager
+   ```
+3. Install dependencies for both backend and frontend:
+   ```bash
+   cd backend
+   npm install
+   cd ../frontend
+   npm install
+   ```
+4. Set up environment variables:
+   - Create a `.env` file in the `backend` directory with the following:
+     ```env
+     MONGO_URI=mongodb://<username>:<password>@<host>:<port>/<database>
+     NODE_ENV=development
+     PORT=3000
+     ```
+5. Build the frontend:
+   ```bash
+   npm run build
+   ```
+6. Start the application:
+   ```bash
+   cd ../backend
+   node server.js
+   ```
 
-## 📝 Sample API Request (Standardized Format)
+## 🌐 Deployment
+The application is deployed on Railway. Ensure the `railway.json` file is correctly configured for monorepo builds.
 
-```http
-GET http://localhost:5000/api/tasks?page=1&limit=10
-Authorization: Bearer <token>
-```
-**Response:**
-```json
-{
-  "success": true,
-  "message": "Tasks fetched",
-  "data": {
-    "tasks": [...],
-    "total": 45,
-    "page": 1,
-    "pages": 5
-  }
-}
-```
+## 🤝 Contributing
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "feat: add your feature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
+
+## 📄 License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+For any inquiries, please contact Ishika2784 via GitHub.
