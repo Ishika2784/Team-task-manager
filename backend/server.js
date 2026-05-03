@@ -1,3 +1,7 @@
+// Expose Node's built-in crypto globally to patch a bug in older MongoDB drivers
+const crypto = require('crypto');
+global.crypto = crypto;
+
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
