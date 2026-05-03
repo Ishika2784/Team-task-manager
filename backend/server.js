@@ -35,13 +35,11 @@ app.use('/api/tasks', require('./routes/taskRoutes'));
 app.use('/api/activities', require('./routes/activityRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
-  });
-}
+// Serve frontend
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.get('/{*path}', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
