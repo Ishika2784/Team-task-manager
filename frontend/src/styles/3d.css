@@ -1,0 +1,125 @@
+/* ── Global 3D utilities ── */
+
+/* Perspective wrapper — apply to any container you want 3D children inside */
+.perspective {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+/* 3D tilt card — pair with JS mouse tracking or use :hover version */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: rotateX(-6deg) rotateY(6deg) translateZ(12px);
+  box-shadow:
+    -8px 16px 40px rgba(99, 102, 241, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Stat card 3D lift */
+.stat-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.35s ease;
+}
+.stat-3d:hover {
+  transform: translateY(-6px) rotateX(-4deg) rotateY(3deg) translateZ(8px);
+  box-shadow:
+    0 20px 40px rgba(99, 102, 241, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Floating 3D badge / pill */
+.badge-3d {
+  transform: translateZ(20px);
+  transform-style: preserve-3d;
+}
+
+/* Deep shadow for 3D depth illusion */
+.shadow-3d {
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.06),
+    0 4px 0 rgba(0,0,0,0.04),
+    0 8px 0 rgba(0,0,0,0.02),
+    0 16px 32px rgba(0,0,0,0.1);
+}
+
+.shadow-3d-indigo {
+  box-shadow:
+    0 2px 0 rgba(99,102,241,0.15),
+    0 6px 0 rgba(99,102,241,0.08),
+    0 12px 0 rgba(99,102,241,0.04),
+    0 24px 48px rgba(99,102,241,0.2);
+}
+
+/* Layered card — creates a stacked paper effect */
+.layered-card::before,
+.layered-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+}
+.layered-card::before {
+  transform: translateY(6px) translateX(4px) scale(0.97);
+  background: rgba(99, 102, 241, 0.12);
+}
+.layered-card::after {
+  transform: translateY(12px) translateX(8px) scale(0.94);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+/* 3D button press */
+.btn-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 0 rgba(67, 56, 202, 0.6), 0 8px 16px rgba(99,102,241,0.3);
+}
+.btn-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 rgba(67, 56, 202, 0.6), 0 12px 24px rgba(99,102,241,0.35);
+}
+.btn-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(67, 56, 202, 0.6), 0 4px 8px rgba(99,102,241,0.2);
+}
+
+/* Sidebar 3D depth */
+.sidebar-3d {
+  box-shadow:
+    4px 0 0 rgba(255,255,255,0.03),
+    8px 0 24px rgba(0,0,0,0.4),
+    16px 0 48px rgba(0,0,0,0.2);
+}
+
+/* Floating element animation */
+@keyframes float3d {
+  0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-2deg); }
+  50%       { transform: translateY(-12px) rotateX(-2deg) rotateY(2deg); }
+}
+.float-3d {
+  animation: float3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Shimmer for 3D surfaces */
+@keyframes shimmer3d {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-3d {
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.08) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer3d 3s linear infinite;
+}
