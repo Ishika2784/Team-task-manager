@@ -40,9 +40,16 @@ app.use('/api/activities', require('./routes/activityRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+const fs = require('fs');
+let frontendPath = path.join(__dirname, '../frontend/dist');
+if (!fs.existsSync(frontendPath)) {
+  // Fallback for Docker container where server.js is in the /app root
+  frontendPath = path.join(__dirname, 'frontend/dist');
+}
+
+app.use(express.static(frontendPath));
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 app.use((err, req, res, next) => {
