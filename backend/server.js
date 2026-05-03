@@ -41,6 +41,7 @@ app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Serve frontend
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
+console.log('Frontend dist path:', frontendDist);
 app.use(express.static(frontendDist));
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendDist, 'index.html'));
